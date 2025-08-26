@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const QuoteBox = () => {
   const [quote, setQuote] = useState(null);
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
   // Fetch quote from backend
   const fetchQuote = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/quotes/random");
+      const res = await fetch(`${BACKEND_URL}/api/quotes/random`);
       const data = await res.json();
       setQuote(data);
     } catch (err) {
